@@ -1,6 +1,6 @@
-import java.time.LocalDate;
+package gps;
+
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public class GPS {
     // atributos
