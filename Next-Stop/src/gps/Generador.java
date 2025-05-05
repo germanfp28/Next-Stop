@@ -20,16 +20,23 @@ public class Generador {
                 LocalDateTime tiempoActual = inicioTiempo; // igualamos al tiempo por defecto ya creado
                 double latitud = 40.4168; // latitud base
                 double longitud = -3.7038; // longitud base
+                int velocidad=0;
 
 
                 for (int i = 0; i < 60; i++) {
-                    double velocidad = random.nextDouble() * 50; // velocidad aleatoria entre 0 y 50
+                     velocidad = random.nextInt(51); // velocidad aleatoria entre 0 y 50
                     latitud += (random.nextDouble() -0.5) * 0.01; // movimientos aleatorios
                     longitud += (random.nextDouble() -0.5) * 0.01;
 
                     GPS datosbus = new GPS(busId, tiempoActual, longitud, latitud, velocidad);
                     fw.write(datosbus.csv() + "\n");
+                    if (velocidad == 0){
+                        System.out.println(busId + "Bus parado" + longitud + " " + latitud );
+                    }
                 }
+
+
+
             }
             System.out.println("Datos guardados en" + archivo);
 
