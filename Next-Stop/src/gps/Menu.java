@@ -1,54 +1,54 @@
 package gps;
 
 import java.sql.SQLOutput;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
-    Scanner leer = new Scanner(System.in);
 
-    public void menu() {
-        int opcion = 0;
-        do {
-            try {
-                System.out.println("Menu");
-                System.out.println("1. Mover Autobuses");
-                System.out.println("2. Mostrar autobuses parados");
-                System.out.println("5. Salir");
-                opcion = leer.nextInt();
+    public static void menu(ArrayList<GPS> datos) {
+        Scanner leer = new Scanner(System.in);
+        String nombre;
+
+        System.out.println("==================");
+        System.out.println("Sistema GPS de Autobuses");
+        System.out.println("Ubicacion: PORTUGAL");
+        System.out.println("==================");
 
 
-                // en cada caso llamamos a los metodos
-                switch (opcion) {
-                    case 1:
-                        System.out.println("Moviendo autobuses......");
-                        String archivo = "almacenamiento/datos_gps.csv"; // ruta de donde se guardan los datos
-                        Generador.generador(archivo);
 
-                        break;
-                    case 2:
-                        System.out.println("Mostrando autobuses parados.......");
-                        break;
-                    case 3:
-
-                        break;
-                    case 4:
-
-                        break;
-                    case 5:
-                        System.out.println("Saliendo");
-                        break;
-
-                    default:
-                        System.out.println("El numero de opcion no existe");
-                        break;
-                }
-
-            } catch (Exception e) {
-
-                leer.next();
+        while (true) {
+            System.out.println("Escribe el id del autobus(ej.Bus01), o 'salir' para terminar");
+            nombre = leer.next().trim();
+            if (nombre.equals("salir")) {
+                System.out.println("Gracias por tu viaje");
+                break;
             }
 
-        } while (opcion != 5);
+            GPS ultimo = ultimodato(datos, nombre);
+            if (ultimo == null) {
+                System.out.println("El autobus no existe");
+            }else {
+                System.out.println("Autobus " + nombre);
+                System.out.println("Ubicacion actual, " + ultimo.getLatitud() + "," + ultimo.getLongitud());
+                System.out.println("Hora: " + ultimo.getTiempobus());
+                System.out.println("Velocidad " + ultimo.getVelocidad());
+            }
+        }
 
+
+    }
+
+    private static GPS ultimodato(ArrayList<GPS> datos, String nombre) {
+        GPS ultimo = null;
+
+        for (GPS g : datos) {
+            if (g.getBusId().equals(nombre)) {
+                if (ultimo == null || g.getTiempobus().isAfter(ultimo.getTiempobus())) {
+                    ultimo = g;
+                }
+            }
+        }
+        return ultimo;
     }
 }
