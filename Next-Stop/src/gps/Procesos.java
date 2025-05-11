@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 public class Procesos {
 
+    // leemos el documento csv y validamos que los datos esten correctos
+
     public static ArrayList<GPS> leerycomprobar(String Archivo) {
         ArrayList<GPS> lista = new ArrayList<>();
 
@@ -44,4 +46,20 @@ public class Procesos {
     private static boolean valido(double lat, double lon, int velocidad) {
         return lat >= -90 && lat <= 90 && lon >= -180 && lon <= 180 && velocidad >= 0;
     }
+
+
+
+    // filtrado de utobuses
+
+    public static ArrayList<GPS> buscarbusid(ArrayList<GPS> lista, String busId, LocalDateTime desde, LocalDateTime hasta) {
+        ArrayList<GPS> resultado = new ArrayList<>();
+
+        for (GPS datos: lista) {
+            if (datos.getBusId().equals(busId) && !datos.getTiempobus().isBefore(desde) && !datos.getTiempobus().isAfter(hasta)) {
+                resultado.add(datos);
+            }
+        }
+        return resultado;
+    }
+
 }
