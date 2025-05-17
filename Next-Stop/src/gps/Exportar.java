@@ -7,9 +7,11 @@ import java.io.IOException;
 import java.util.List;
 
 public class Exportar {
+    // Esta clase exporta los datos del bus indicado en el JSON
     // Metodo para exportar la ultima posicion de cada autobus
     public static void exportarUltimaPosicion(List<GPS> datos, String archivo) {
-        // Crear un objeto Gson
+
+        // Creamos un objeto JSON
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(java.time.LocalDateTime.class, new AdaptadorLocalDateTime()) // Registra el adaptador
                 .setPrettyPrinting() // Para que el JSON sea legible
