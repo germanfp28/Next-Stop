@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Analisis {
-
+// esta clase realiza un analisis de los datos del autobus
     // Calcular la velocidad media por autobús
     public static double calcularVelocidadMedia(List<GPS> datos, String busId) {
         int totalVelocidad = 0;
@@ -33,7 +33,7 @@ public class Analisis {
         return paradas;
     }
 
-    // Contar las paradas por ruta (por bus)
+    // Contar las paradas por ruta por bus
     public static Map<String, Integer> contarParadasPorRuta(List<GPS> datos) {
         Map<String, Integer> paradasPorRuta = new HashMap<>();
 
