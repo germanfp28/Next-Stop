@@ -11,7 +11,7 @@ public class GPS {
     private int velocidad;
 
     // constructor
-    public GPS(String busId, LocalDateTime tiempobus, double latitud, double longitud, int velocidad) {
+    public GPS(String busId, LocalDateTime tiempobus, double latitud, double longitud,int velocidad) {
         this.busId = busId;
         this.tiempobus = tiempobus;
         this.latitud = latitud;
@@ -42,14 +42,29 @@ public class GPS {
         return velocidad;
     }
 
-    public String csv(){
-        // Formato de como se va a guardar en el csv
-        return String.format("%s,%s,%.5f,%.5f,%d",
-                busId,
-                tiempobus.toString(),
-                latitud,
-                longitud,
-                velocidad
-        );
+    // setters
+    public void setBusId(String busId) {
+        this.busId = busId;
+    }
+
+    public void setTiempobus(LocalDateTime tiempobus) {
+        this.tiempobus = tiempobus;
+    }
+
+    public void setLatitud(double latitud) {
+        this.latitud = latitud;
+    }
+
+    public void setLongitud(double longitud) {
+        this.longitud = longitud;
+    }
+
+    public void setVelocidad(int velocidad) {
+        this.velocidad = velocidad;
+    }
+
+    // Metodo para una representacion en el csv
+    public String toCSV() {
+        return busId + "," + tiempobus.toString() + "," + latitud + "," + longitud + "," + velocidad;
     }
 }
