@@ -7,7 +7,7 @@ public class Menu {
 
     public static void menu() {
         Scanner leer = new Scanner(System.in);
-        String archivo = "C:/Users/German/Desktop/DIGITALIZACION/Next-Stop/Next-Stop/almacenamiento/datos_gps.csv"; // ruta del archivo
+        String archivo = "almacenamiento/datos_gps.csv"; // ruta del archivo
         List <GPS> datos = null; // lista para almacenar los datos leidos
 
         // Menú principal
